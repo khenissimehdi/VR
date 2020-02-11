@@ -21,7 +21,19 @@ ViewerInterface::ViewerInterface()
     connect( axisSizeSpinBox,    SIGNAL(valueChanged(int)), viewer, SLOT(axisSizeChanged(int)) );
 
 
+
+
+    /*help(),helpWidget()*/
+
+
+
+
     ///  TODO - Connexion à compléter...
+
+    connect(aboutButton , SIGNAL(pressed(void)),viewer,SLOT(about()));
+
+    connect(quitButton,SIGNAL(pressed(void)),this,SLOT(close()));
+
 
 
 
@@ -42,6 +54,7 @@ void ViewerInterface::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED( event )
     viewer->close();
+
 }
 
 

@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QTabWidget>
 
 #include <iostream>
 
@@ -43,6 +44,7 @@ void Viewer::closeEvent(QCloseEvent *event)
 
     saveStateToFile();
     gluDeleteQuadric( ToolsMarker::quad );
+    this->helpWidget()->close();
 
     //// TODO - Ménage
 
