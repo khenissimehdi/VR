@@ -83,6 +83,8 @@ private :
        QTimer         m_trackingTimer;  // timer de déclenchement de la lecture des données sur UDP
 
  //// TODO - autres Attributs pour le tracking
+   DTrack * m_tracker;
+    QTimer *timer ;
 
 };
 

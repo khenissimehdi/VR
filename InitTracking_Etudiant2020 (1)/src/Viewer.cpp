@@ -47,6 +47,7 @@ void Viewer::closeEvent(QCloseEvent *event)
     this->helpWidget()->close();
 
     //// TODO - Ménage
+    delete(this);
 
 }
 
@@ -55,6 +56,12 @@ void Viewer::closeEvent(QCloseEvent *event)
 ////         qu'aucune erreur n'ai eu lieu.
 int Viewer::doBindTracker()
 {
+    m_tracker = new DTrack();
+
+    if(!(m_tracker->valid())){
+        return 0;
+    }
+
 
 
     return 1;
@@ -66,6 +73,10 @@ int Viewer::doBindTracker()
 ////        et connection à la méthode à exécuter lors de son déclenchement
 void Viewer::setTrackingConnect()
 {
+    m_trackingTimer.setInterval(0);
+
+    connect(&m_trackingTimer,SIGNAL(timeout()), this,SLOT(readARTData()));
+
 }
 
 
