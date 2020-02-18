@@ -62,8 +62,6 @@ int Viewer::doBindTracker()
         return 0;
     }
 
-
-
     return 1;
 }
 
@@ -76,13 +74,18 @@ void Viewer::setTrackingConnect()
     m_trackingTimer.setInterval(0);
 
     connect(&m_trackingTimer,SIGNAL(timeout()), this,SLOT(readARTData()));
-
 }
 
 
 //// TODO - Lecture des données émises par le système de tracking
 void Viewer::readARTData()
 {
+    bool receive = m_tracker->receive();
+    if ( !receive )
+    {
+        qDebug() << "readARTData() : Problème de reception";
+    }
+
 }
 
 
@@ -285,6 +288,14 @@ void Viewer::init() {
 //// TODO - écriture des informations textes
 void Viewer::drawInfo       ()
 {
+    QFont fontArial("Arial");
+    fontArial.setPointSize(12);
+
+    QString numUDP("Numéro du paquet UDP lu : " + QString::number(m_tracker->get_framecounter()));
+    QString numMarker("Nombre de marqueurs détectés et suivis : " + QString::number(m_tracker->get_num_marker()));
+
+    this->drawText(10,30,numUDP,fontArial);
+    this->drawText(10,60,numMarker,fontArial);
 }
 
 

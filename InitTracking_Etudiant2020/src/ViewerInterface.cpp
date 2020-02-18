@@ -34,6 +34,9 @@ ViewerInterface::ViewerInterface()
 
     connect(quitButton,SIGNAL(pressed(void)),this,SLOT(close()));
 
+    connect(pauseButton,SIGNAL(clicked(bool)),viewer,SLOT(pause(bool)));
+
+
 
 
 

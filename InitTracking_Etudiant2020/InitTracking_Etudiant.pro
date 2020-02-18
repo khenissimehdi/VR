@@ -24,10 +24,16 @@ INCLUDEPATH += $$PWD/src/ui
 # --- sources
   # --- perso
     HEADERS = src/ViewerInterface.h \
+    src/ARTBody.h \
+    src/ARTFlystick.h \
+    src/ARTMarker.h \
               src/StereoDialog.h \
               src/Viewer.h
 
     SOURCES = src/main.cpp \
+    src/ARTBody.cpp \
+    src/ARTFlystick.cpp \
+    src/ARTMarker.cpp \
               src/ViewerInterface.cpp \
               src/Viewer.cpp
 
