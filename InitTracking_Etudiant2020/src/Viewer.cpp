@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QInputDialog>
 #include <QTabWidget>
+#include "ARTMarker.h"
 
 #include <iostream>
 
@@ -85,6 +86,9 @@ void Viewer::readARTData()
     {
         qDebug() << "readARTData() : Problème de reception";
     }
+    for (int m = 0;m<m_tracker->get_num_marker();m++) {
+        m_markers.push_back(m_tracker->get_marker(m));
+    }
 
 }
 
@@ -135,8 +139,6 @@ void Viewer::setStereoDialog()
     updateGL();
 
 }
-
-
 
 
 /// ------------------ SLOTs   avec l'interface
@@ -213,18 +215,10 @@ void Viewer::sphereSizeChanged( int val )
 }
 
 
-
-
-
-
 void Viewer::showStereoDialog()
 {
     m_stereoDialog->show();
 }
-
-
-
-
 
 ///   liens avec stereoDialog
 ///
@@ -303,6 +297,11 @@ void Viewer::drawInfo       ()
 //// TODO - Dessins des marqueurs détectés
 void Viewer::drawMarkers    ()
 {
+    for (ARTMarker m : m_markers) {
+        m.draw();
+    }
+    // m_tracker->get_num_marker();
+
 }
 
 // Ne pas modifier cette méthode

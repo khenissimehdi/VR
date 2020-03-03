@@ -29,6 +29,7 @@ public:
     //! @param pos   - position du centre de la sphère
     //! @param color - couleur de la sphère
     //! @param size  - taille de la sphère
+    //!
     static void drawSphere(const qglviewer::Vec &pos, const QColor &color , double size);
 
     //! Dessin d'un axe à la positon pos, d'orientation q, de taille size et de couleur color

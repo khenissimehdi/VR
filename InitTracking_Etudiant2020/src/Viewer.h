@@ -9,8 +9,10 @@
 
 #include <QTimer>
 #include <QMap>
+#include <QVector>
 
 #include "ToolsMarker.h"
+#include "ARTMarker.h"
 
 /*!
  * \brief The Viewer class, classe permettant une visualisation avec OpenGL
@@ -84,6 +86,7 @@ private :
 
  //// TODO - autres Attributs pour le tracking
        DTrack * m_tracker;
+       QVector<ARTMarker> m_markers;
 };
 
 
