@@ -86,8 +86,26 @@ void Viewer::readARTData()
     {
         qDebug() << "readARTData() : Problème de reception";
     }
-    for (int m = 0;m<m_tracker->get_num_marker();m++) {
-        m_markers.push_back(m_tracker->get_marker(m));
+
+    for (int m = 0; m < m_tracker->get_num_marker(); m++) {
+        int pos = -1;
+
+        for (int i = 0; i< m_markers.size(); i++)
+        {
+            if ((m_tracker->get_marker(m)).id == m_markers.at(i)->getId())
+            {
+                pos = i;
+            }
+        }
+
+        if (pos == -1)
+        {
+            m_markers.push_back(new ARTMarker(m_tracker->get_marker(m)));
+        }
+        else
+        {
+            m_markers.at(pos)->addTrace(qglviewer::Vec(m_tracker->get_marker(m).loc[0],m_tracker->get_marker(m).loc[1],m_tracker->get_marker(m).loc[2]));
+        }
     }
 
 }
@@ -297,10 +315,9 @@ void Viewer::drawInfo       ()
 //// TODO - Dessins des marqueurs détectés
 void Viewer::drawMarkers    ()
 {
-    for (ARTMarker m : m_markers) {
-        m.draw();
+    for (ARTMarker* m : m_markers) {
+        m->draw();
     }
-    // m_tracker->get_num_marker();
 
 }
 

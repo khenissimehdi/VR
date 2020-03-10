@@ -8,17 +8,21 @@ ARTMarker::ARTMarker(dtrack_marker_type marker)
     quality = marker.quality;
     m_position = qglviewer::Vec(marker.loc[0],marker.loc[1],marker.loc[2]);
     resizeTrace(ToolsMarker::nbMaxTraces);
-    addTrace();
 }
 
-void ARTMarker::addTrace()
+void ARTMarker::addTrace(qglviewer::Vec position)
 {
     if (m_posTraces.size() >= m_posTraces.capacity())
     {
         m_posTraces.removeFirst();
     }
-    m_posTraces.push_back(m_position);
+    m_position = position;
+    m_posTraces.push_back(position);
 
+}
+
+int ARTMarker::getId() {
+    return id;
 }
 
 void ARTMarker::clearTrace()
@@ -33,5 +37,17 @@ void ARTMarker::resizeTrace(int size)
 
 void ARTMarker::draw()
 {
-    ToolsMarker::drawSphere(m_position, m_color, 200);
+
+    int sizeSphere = 50;
+    double alpha = 0.3;
+    QColor color = m_color;
+
+    for (int i = 0; i < m_posTraces.size(); i++)
+    {
+        sizeSphere += 1;
+        alpha += 0.1;
+        alpha = (alpha > 1.0) ? alpha = 1.0 : alpha;
+        color.setAlphaF(alpha);
+        ToolsMarker::drawSphere(m_posTraces.at(i), color, sizeSphere);
+    }
 }

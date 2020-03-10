@@ -12,10 +12,11 @@ class ARTMarker
 {
 public:
     ARTMarker(dtrack_marker_type);
-    void addTrace();
+    void addTrace(qglviewer::Vec position);
     void clearTrace();
     void resizeTrace(int size);
     void draw();
+    int getId();
 protected:
     int id;               // id number (starting with 0)
     float quality;        // quality (0 <= qu <= 1, no tracking if -1)

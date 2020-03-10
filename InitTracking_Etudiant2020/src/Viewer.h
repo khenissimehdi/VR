@@ -86,7 +86,7 @@ private :
 
  //// TODO - autres Attributs pour le tracking
        DTrack * m_tracker;
-       QVector<ARTMarker> m_markers;
+       QVector<ARTMarker*> m_markers;
 };
 
 
